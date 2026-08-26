@@ -12,7 +12,7 @@ Solync Status Page
 ### Development
 
 1. Clone repo
-2. Run `npm ci`
+2. Run `bun i`
 3. Go to <http://localhost:3000>
 4. Make your changes, etc.
 
@@ -52,7 +52,3 @@ Notes:
 - These won't be published to GitHub.
 - It is recommended to leave the `DISCORDWEBHOOK_MAIN_*` alone when testing.
 - Check Interval is 5000ms (5s) so offline/online updates faster.
-
-## License
-
-The content of this repository is licensed under [NC-IPCSAL](https://solync.org/legal/licenses/NC-IPCSAL). Please see [the license file](LICENSE.md) for a copy of this license.
