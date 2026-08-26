@@ -1,27 +1,96 @@
-# Netro
+# PolyForm Internal Use License 1.0.0
 
-### Internal/Private Code, Software & Assets License
+<https://polyformproject.org/licenses/internal-use/1.0.0>
 
-Copyright (c) 2026 Netro
+## Acceptance
 
-If you do not agree, you must remove all local copies unless other stated.
+In order to get any license under these terms, you must agree
+to them as both strict obligations and conditions to all
+your licenses.
 
-### Restricted Use
+## Copyright License
 
-You are granted a non-transferable, non-exclusive, and limited license to use the code, software, applications, and assets solely for the purposes outlined in the documentation and as expressly permitted by Netro. You may not use, copy, distribute, or modify any part of the code, software, or assets for any other purpose, including but not limited to any commercial or public use, unless otherwise authorized in writing via email or official means of communication.
+The licensor ([J6papertek](https://github.com/papertek)) grants you a copyright license for the software
+to do everything you might do with the software that would
+otherwise infringe the licensor's copyright in it for any
+permitted purpose.  However, you may only make changes or
+new works based on the software according to [Changes and New
+Works License](#changes-and-new-works-license), and you may
+not distribute the software.
 
-### Confidentiality & Privacy
+## Changes and New Works License
 
-The code, software, and assets provided to you are considered private and confidential. By accepting this license, you agree not to disclose, share, sublicense, rent, lease, or otherwise transfer any rights, or distribute any part of the code, software, or assets to any third parties without the express written consent of Netro.
+The licensor grants you an additional copyright license to
+make changes and new works based on the software for any
+permitted purpose.
 
-### Termination
+## Patent License
 
-This license is effective until terminated. You may terminate this license at any time by ceasing all use of the code, software, and assets. Netro may terminate this license at any time for any reason (for example, if you violate any terms listed in this License), or no reason. If termination occurs, you must remove all local copies of the code, software, and assets unless other stated.
+The licensor grants you a patent license for the software that
+covers patent claims the licensor can license, or becomes able
+to license, that you would infringe by using the software.
 
-### No Warranty
+## Fair Use
 
-The Software is provided "AS IS" without warranties of any kind, express or implied, including but not limited to merchantability, non-infringement, or fitness for a particular purpose. Netro is not liable for any damages arising from the use or inability to use the code, software, or assets, including but not limited to business or organization interruptions, loss of profits, or other financial losses, even if advised of the possibility of such damages.
+You may have "fair use" rights for the software under the
+law. These terms do not limit them.
 
-### Contact
+## Internal Business Use
 
-You may contact the Netro Legal Team at `legal@netrocorp.net`.
+Use of the software for the internal business operations of
+you and your company is use for a permitted purpose.
+
+## No Other Rights
+
+These terms do not allow you to sublicense or transfer any of
+your licenses to anyone else, or prevent the licensor from
+granting licenses to anyone else.  These terms do not imply
+any other licenses.
+
+## Patent Defense
+
+If you make any written claim that the software infringes or
+contributes to infringement of any patent, your patent license
+for the software granted under these terms ends immediately. If
+your company makes such a claim, your patent license ends
+immediately for work on behalf of your company.
+
+## Violations
+
+The first time you are notified in writing that you have
+violated any of these terms, or done anything with the software
+not covered by your licenses, your licenses can nonetheless
+continue if you come into full compliance with these terms,
+and take practical steps to correct past violations, within
+32 days of receiving notice.  Otherwise, all your licenses
+end immediately.
+
+## No Liability
+
+***As far as the law allows, the software comes as is, without
+any warranty or condition, and the licensor will not be liable
+to you for any damages arising out of these terms or the use
+or nature of the software, under any kind of legal claim.***
+
+## Definitions
+
+The **licensor** is the individual or entity offering these
+terms, and the **software** is the software the licensor makes
+available under these terms.
+
+**You** refers to the individual or entity agreeing to these
+terms.
+
+**Your company** is any legal entity, sole proprietorship,
+or other kind of organization that you work for, plus all
+organizations that have control over, are under the control of,
+or are under common control with that organization.  **Control**
+means ownership of substantially all the assets of an entity,
+or the power to direct its management and policies by vote,
+contract, or otherwise.  Control can be direct or indirect.
+
+**Your licenses** are all the licenses granted to you for the
+software under these terms.
+
+**Use** means anything you do with the software requiring one
+of your licenses.

@@ -1,6 +1,6 @@
-# NetroStatus
+# SolyncStatus
 
-Netro Status Page
+Solync Status Page
 
 ## Getting started
 
@@ -24,11 +24,11 @@ For development, you can set up a simple testing grounds, like so:
 
 ```js
 module.exports = [
-	{
-		id: "test",
-		name: "Test Site",
-		url: "https://test.example.com",
-	},
+ {
+  id: "test",
+  name: "Test Site",
+  url: "https://test.example.com",
+ },
 ];
 ```
 
@@ -55,4 +55,4 @@ Notes:
 
 ## License
 
-The content of this repository is licensed under [NC-IPCSAL](https://netrocorp.net/legal/licenses/NC-IPCSAL). Please see [the license file](LICENSE.md) for a copy of this license.
+The content of this repository is licensed under [NC-IPCSAL](https://solync.org/legal/licenses/NC-IPCSAL). Please see [the license file](LICENSE.md) for a copy of this license.

@@ -24,7 +24,7 @@
  * @property {number} downtime - Downtime duration in seconds.
  */
 
-console.log("NetroStatus is starting...");
+console.log("SolyncStatus is starting...");
 
 const http = require("http");
 const https = require("https");
@@ -43,7 +43,7 @@ let sitesToMonitor = null;
 try {
 	sitesToMonitor = require(`./data/check.${process.env.NODE_ENV == "prod" ? "production" : "development"}.js`);
 } catch (err) {
-	console.error("Failed to start NetroStatus. You might be missing a config!", err);
+	console.error("Failed to start SolyncStatus. You might be missing a config!", err);
 	process.exit(-1);
 }
 
@@ -91,7 +91,7 @@ const sendDiscordNotification = (site, result) => {
 			{ name: "Error", value: result.error || "No response", inline: false },
 			{ name: "Checked at", value: result.checked.toISOString(), inline: false },
 		],
-		footer: { text: "NetroStatus Monitoring" },
+		footer: { text: "SolyncStatus Monitoring" },
 		timestamp: new Date().toISOString(),
 	};
 
@@ -453,7 +453,7 @@ const server = http.createServer((req, res) => {
 			// Replace placeholders
 			template = template.replace("%statuses%", generateStatusHTML());
 			template = template.replace(/%lastCheck%/g, lastCheckTime.toLocaleString());
-			template = template.replace(/%title%/g, "Status | Netro");
+			template = template.replace(/%title%/g, "Status | Solync");
 
 			res.writeHead(200, { "Content-Type": mime[".html"] });
 			res.end(template);
@@ -461,7 +461,7 @@ const server = http.createServer((req, res) => {
 			if (err.message == "init")
 				return res
 					.writeHead(500, { "Content-Type": mime[".txt"] })
-					.end("NetroStatus is still initializing. Please refresh in a few moments.");
+					.end("SolyncStatus is still initializing. Please refresh in a few moments.");
 
 			console.error("Error serving template:", err);
 			res.writeHead(500, { "Content-Type": mime[".txt"] });
@@ -477,5 +477,5 @@ const server = http.createServer((req, res) => {
 // Start server
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
-	console.log(`NetroStatus now running on http://localhost:${PORT}`);
+	console.log(`SolyncStatus now running on http://localhost:${PORT}`);
 });

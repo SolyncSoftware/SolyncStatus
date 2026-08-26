@@ -1,13 +1,13 @@
 module.exports = [
 	// {
-	// 	id: "netroworks",
-	// 	name: "NetroWorks",
-	// 	url: "https://netro.works",
+	// 	id: "solyncworks",
+	// 	name: "SolyncWorks",
+	// 	url: "https://solync.org",
 	// },
 	{
 		id: "services-nh",
-		name: "NetroHost",
-		url: "https://netro.host",
+		name: "SolyncHost",
+		url: "https://solync.host",
 	},
 	// {
 	// 	id: "services-gardens",
@@ -18,11 +18,11 @@ module.exports = [
 	{
 		id: "legacy-main",
 		name: "Legacy Website",
-		url: "https://netrocorp.net",
+		url: "https://solync.org",
 	},
 	{
 		id: "legacy-api",
 		name: "Legacy API",
-		url: "https://api.netrocorp.net",
+		url: "https://api.solync.org",
 	},
 ];

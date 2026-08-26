@@ -1,5 +1,5 @@
 {
-	"name": "netrostatus",
+	"name": "solyncstatus",
 	"version": "1.0.0",
 	"main": "index.js",
 	"scripts": {
@@ -8,9 +8,9 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
-	"author": "Netro",
+	"author": "Solync",
 	"license": "NC-IPCSAL",
-	"description": "Netro Status Page",
+	"description": "Solync Status Page",
 	"dependencies": {
 		"dotenv": "^16.4.7"
 	},
