@@ -1,0 +1,73 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+/* cabinet grotesk */
+@font-face {
+	font-family: 'Cabinet Grotesk';
+	src:
+		url('/fonts/CabinetGrotesk/CabinetGrotesk-Variable.woff2') format('woff2'),
+		url('/fonts/CabinetGrotesk/CabinetGrotesk-Variable.woff') format('woff'),
+		url('/fonts/CabinetGrotesk/CabinetGrotesk-Variable.ttf') format('truetype'),
+		url('/fonts/CabinetGrotesk/CabinetGrotesk-Variable.eot') format('embedded-opentype');
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Red Hat Monospace';
+	src: url('/fonts/RedHatDisplay/RedHatMono-VariableFont_wght.ttf') format('truetype');
+	font-display: swap;
+	font-style: monospace;
+	font-weight: 300 700;
+}
+
+@theme {
+	/* Colors */
+	--color-accent: #f36647;
+	--color-offaccent: #ff7657;
+	--color-black: #222222;
+	--color-white: #fff8f7;
+	--color-offwhite: #f8e8e5;
+	--color-warning: #f0c92d;
+	--color-error: #f02d31;
+
+	/* Typography */
+	--font-sans: 'Cabinet Grotesk', sans-serif;
+	--font-monospace: 'Red Hat Monospace', monospace;
+
+	/* Responsiveness */
+	--breakpoint-3xl: 2100px; /* Wide screen */
+}
+
+html {
+	background-color: var(--color-offwhite);
+	color: var(--color-black);
+	scroll-behavior: smooth;
+}
+
+body {
+	min-height: 100vh;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	min-height: 75vh;
+}
+
+a {
+	transition: all 100ms ease-in-out;
+}
+
+::selection {
+	background: var(--color-offaccent);
+	color: var(--color-white);
+	text-shadow: none;
+}
+
+::-moz-selection {
+	background: var(--color-offaccent);
+	color: var(--color-white);
+}

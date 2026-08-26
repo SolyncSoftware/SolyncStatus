@@ -1,0 +1,10 @@
+{
+	"recommendations": [
+		"1yib.svelte-bundle",
+		"esbenp.prettier-vscode",
+		"vivaxy.vscode-conventional-commits",
+		"bradlc.vscode-tailwindcss",
+		"austenc.tailwind-docs",
+		"ms-azuretools.vscode-containers"
+	]
+}

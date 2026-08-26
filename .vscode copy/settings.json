@@ -1,0 +1,8 @@
+{
+    "[svelte]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "conventionalCommits.scopes": ["homepage", "about us", "legal", "contact us", "site", "apply page", "blog articles", "responsive ux"],
+    "workbench.browser.openLocalhostLinks": false
+}
