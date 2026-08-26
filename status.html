@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>%title%</title>
+		<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap");
+
+			:root {
+				--theme-white: #eeeeee;
+				--theme-dim-white: rgba(255, 255, 255, 0.15);
+				--theme-bright-white: white;
+				--theme-red: #f2585b;
+				--theme-dim-red: rgba(242, 88, 91, 0.15);
+				--theme-blurple: #0037ff;
+			}
+
+			/* @keyframes glow {
+				0% {
+					text-shadow: 0 0 5px var(--theme-white);
+				}
+
+				50% {
+					text-shadow:
+						0 0 20px var(--theme-white),
+						0 0 30px var(--theme-white);
+				}
+
+				100% {
+					text-shadow: 0 0 5px var(--theme-white);
+				}
+			} */
+
+			@keyframes fadeIn {
+				0% {
+					opacity: 0;
+					transform: translateY(20px);
+				}
+
+				100% {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			@keyframes scanline {
+				0% {
+					transform: translateY(-100%);
+				}
+
+				100% {
+					transform: translateY(100%);
+				}
+			}
+
+			@keyframes pulse {
+				0% {
+					box-shadow: 0 0 5px var(--theme-white);
+				}
+
+				50% {
+					box-shadow: 0 0 15px var(--theme-white);
+				}
+
+				100% {
+					box-shadow: 0 0 5px var(--theme-white);
+				}
+			}
+
+			@keyframes pulseRed {
+				0% {
+					box-shadow: 0 0 5px var(--theme-red);
+				}
+
+				50% {
+					box-shadow: 0 0 15px var(--theme-red);
+				}
+
+				100% {
+					box-shadow: 0 0 5px var(--theme-red);
+				}
+			}
+
+			body {
+				margin: 0;
+				padding: 0 0 80px 0;
+				font-family: "Red Hat Display", sans-serif;
+				background-color: #eeeeee;
+				color: black;
+				position: relative;
+				display: flex;
+				justify-content: center;
+				min-height: 100vh;
+			}
+
+			body::before {
+				content: "";
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: #eeeeee;
+				z-index: -1;
+			}
+
+			body::after {
+				content: "";
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0, 55, 255, 0.03);
+				z-index: 1000;
+				/* animation: scanline 8s linear infinite; */
+				pointer-events: none;
+			}
+
+			h1 {
+				text-align: center;
+				font-size: 2.5rem;
+				margin-bottom: 2rem;
+				/* text-shadow: 0 0 10px var(--theme-white); */
+				border-bottom: 1px solid var(--theme-white);
+				padding-bottom: 0.5rem;
+				/* animation: glow 3s infinite; */
+			}
+
+			.container {
+				width: 80%;
+				margin: 2rem 0;
+				padding: 0 1rem;
+			}
+
+			.header {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 1.5rem 1rem;
+				background-color: white;
+				border: 1px solid var(--theme-dim-white);
+				margin-bottom: 2rem;
+			}
+
+			.header .branding-container {
+				text-align: center;
+				display: flex;
+				align-items: center;
+				gap: 16px;
+			}
+
+			.header .branding-container img {
+				max-height: 48px;
+				/* filter: drop-shadow(0 0 10px var(--theme-blurple)); */
+			}
+
+			.header .branding-container h1 {
+				text-align: center;
+				font-size: 1.5rem;
+				margin: 0;
+				/* text-shadow: 0 0 10px var(--theme-white); */
+				border-bottom: 0;
+				padding: 0;
+				/* animation: glow 3s infinite; */
+			}
+
+			.status-grid {
+				display: flex;
+				flex-direction: column;
+				gap: 1.5rem;
+				margin-bottom: 2rem;
+			}
+
+			.status-card {
+				background-color: var(--theme-bright-white);
+				border: 1px solid var(--theme-dim-white);
+				transition: all 0.3s ease;
+				width: 100%;
+				animation: fadeIn 0.5s ease-out both;
+				overflow: hidden;
+			}
+			/* 
+			.status-card:nth-child(1) {
+				animation-delay: 0.1s;
+			}
+
+			.status-card:nth-child(2) {
+				animation-delay: 0.2s;
+			}
+
+			.status-card:nth-child(3) {
+				animation-delay: 0.3s;
+			}
+
+			.status-card:nth-child(4) {
+				animation-delay: 0.4s;
+			}
+
+			.status-card.online {
+				animation: pulse 4s infinite;
+			} */
+
+			.offline-card {
+				background-color: var(--theme-bright-white);
+				border: 1px solid var(--theme-red);
+				/* box-shadow: 0 0 15px rgba(255, 51, 51, 0.1); */
+				/* animation:
+					fadeIn 0.5s ease-out both,
+					pulseRed 4s infinite; */
+			}
+
+			.status-card:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 0 20px rgba(0, 55, 255, 0.2);
+			}
+
+			.offline-card:hover {
+				box-shadow: 0 0 20px rgba(255, 51, 51, 0.2);
+			}
+
+			.status-card details {
+				width: 100%;
+			}
+
+			.status-card details[open] summary::after {
+				content: "▲";
+				transform: rotate(0deg);
+			}
+
+			.status-card details:not([open]) summary::after {
+				content: "▼";
+				transform: rotate(0deg);
+			}
+
+			.status-card summary {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 1rem 1.5rem;
+				cursor: pointer;
+				background-color: var(--theme-bright-white);
+				border-bottom: 1px solid var(--theme-blurple);
+				list-style: none;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.status-card summary::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(90deg, transparent, rgba(0, 55, 255, 0.08), transparent);
+				transform: translateX(-100%);
+				transition: transform 0.5s;
+			}
+
+			.status-card summary::after {
+				margin-left: 8px;
+				font-size: 0.7rem;
+				/* opacity: 0.8; */
+				transition: all 0.3s ease;
+			}
+
+			.status-card:hover summary::before {
+				transform: translateX(100%);
+			}
+
+			.status-card summary::-webkit-details-marker {
+				display: none;
+			}
+
+			.offline-card summary {
+				background-color: var(--theme-dim-red);
+				border-bottom: 1px solid var(--theme-red);
+			}
+
+			.offline-card summary::before {
+				background: linear-gradient(90deg, transparent, rgba(242, 88, 91, 0.02), transparent);
+			}
+
+			.site-name {
+				font-size: 1.3rem;
+				margin: 0;
+				flex-grow: 1;
+				position: relative;
+				display: flex;
+				align-items: center;
+			}
+
+			.status-indicator {
+				font-weight: bold;
+				padding: 0.4rem 0.8rem;
+				font-size: 0.8rem;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+			}
+
+			.status-content {
+				padding: 0;
+				height: 0;
+				overflow: hidden;
+				transition: height 0.3s ease;
+			}
+
+			details[open] .status-content {
+				padding: 1.5rem;
+				height: auto;
+			}
+
+			/* .offline-card .status-content {
+				background: rgba(20, 0, 0, 0.2);
+			} */
+
+			.status-info {
+				display: flex;
+				flex-direction: column;
+				gap: 0.8rem;
+			}
+
+			.status-row {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				border-bottom: 1px dotted var(--theme-blurple);
+				padding: 0.5rem 0;
+			}
+
+			.offline-card .status-row {
+				border-bottom: 1px dotted var(--theme-red);
+			}
+
+			.status-row:last-child {
+				border-bottom: none;
+			}
+
+			/* .status-label {
+				opacity: 0.7;
+			} */
+
+			.status-value {
+				font-weight: bold;
+				text-align: right;
+				padding: 0.25em 1em;
+			}
+
+			.url-value {
+				font-size: 0.8rem;
+				word-break: break-all;
+			}
+
+			.online {
+				color: var(--theme-bright-white);
+				background-color: var(--theme-blurple);
+			}
+
+			.offline {
+				color: var(--theme-red);
+				background-color: var(--theme-dim-red);
+			}
+
+			.last-check {
+				text-align: center;
+				/* opacity: 0.8; */
+			}
+
+			.refresh-container {
+				position: fixed;
+				right: 2rem;
+				bottom: 0;
+				z-index: 100;
+				transform: translateY(175px);
+				/* animation: slideUp 0.5s forwards;
+				animation-delay: 45s; */
+			}
+
+			@keyframes slideUp {
+				0% {
+					transform: translateY(75px);
+				}
+
+				100% {
+					transform: translateY(0);
+				}
+			}
+
+			.refresh-btn {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 60px;
+				height: 60px;
+				background-color: var(--theme-blurple);
+				color: var(--theme-bright-white);
+				border: 1px solid var(--theme-dim-white);
+				border-radius: 16px;
+				font-size: 1.5rem;
+				cursor: pointer;
+				box-shadow: 0 0 15px rgba(0, 55, 255, 0.2);
+				position: relative;
+				overflow: hidden;
+				margin-bottom: 1rem;
+			}
+
+			.refresh-btn::before {
+				content: "↻";
+				font-size: 2rem;
+				font-weight: bold;
+			}
+
+			.refresh-btn:hover {
+				background-color: rgba(0, 55, 255, 0.9);
+				box-shadow: 0 0 20px rgba(0, 55, 255, 0.4);
+			}
+
+			.refresh-btn::after {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: -100%;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(90deg, transparent, rgba(0, 55, 255, 0.3), transparent);
+				/* animation: shimmer 3s infinite;
+				animation-delay: 31s; */
+			}
+
+			@keyframes shimmer {
+				0% {
+					transform: translateX(0%);
+				}
+
+				100% {
+					transform: translateX(200%);
+				}
+			}
+
+			.footer {
+				text-align: center;
+				margin-top: 3rem;
+				padding-top: 1rem;
+				border-top: 1px solid var(--theme-blurple);
+				/* opacity: 0.7; */
+				font-size: 0.9rem;
+			}
+
+			@media (max-width: 768px) {
+				.header {
+					flex-direction: column;
+					gap: 16px;
+				}
+
+				.container {
+					width: 95%;
+					padding: 0.5rem;
+				}
+
+				.refresh-container {
+					right: 1rem;
+				}
+
+				.status-row {
+					flex-direction: column;
+					align-items: flex-start;
+				}
+
+				.status-value {
+					text-align: left;
+					width: fit-content;
+				}
+
+				.site-name {
+					font-size: 1.1rem;
+				}
+
+				h1 {
+					font-size: 1.8rem;
+				}
+			}
+
+			@media (max-width: 480px) {
+				.site-name {
+					flex-direction: column;
+					align-items: baseline;
+				}
+
+				.status-value:not(.online):not(.offline) {
+					padding-left: 0;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="header">
+				<div class="branding-container">
+					<img src="/logo.png" alt="Netro Logo" />
+				</div>
+				<div class="last-check">Last checked: %lastCheck%</div>
+			</div>
+
+			<div class="status-grid">%statuses%</div>
+
+			<div class="footer">&copy; 2026 Netro. All rights reserved.</div>
+		</div>
+
+		<div class="refresh-container">
+			<form method="GET" action="/">
+				<button type="submit" class="refresh-btn"></button>
+			</form>
+		</div>
+	</body>
+</html>
