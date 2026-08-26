@@ -1,28 +1,17 @@
 module.exports = [
-	// {
-	// 	id: "solyncworks",
-	// 	name: "SolyncWorks",
-	// 	url: "https://solync.org",
-	// },
 	{
-		id: "services-nh",
-		name: "SolyncHost",
-		url: "https://solync.host",
-	},
-	// {
-	// 	id: "services-gardens",
-	// 	name: "Gardens Wiki",
-	// 	url: "https://gardens.wiki",
-	// },
-
-	{
-		id: "legacy-main",
-		name: "Legacy Website",
+		id: "solynclanding",
+		name: "Landing Page",
 		url: "https://solync.org",
 	},
 	{
-		id: "legacy-api",
-		name: "Legacy API",
-		url: "https://api.solync.org",
+		id: "services-gardens",
+		name: "Gardens Wiki",
+		url: "https://gardens.wiki",
+	},
+	{
+		id: "sl-cherish",
+		name: "Infrastructure",
+		url: "https://pve.solync.org",
 	},
 ];
