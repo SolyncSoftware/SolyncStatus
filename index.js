@@ -470,7 +470,7 @@ const server = http.createServer((req, res) => {
 			if (typeof statusResults === "undefined") throw new Error("init");
 
 			// Read HTML template
-			let template = fs.readFileSync(path.join(process.cwd(), "status.html"), "utf8");
+			let template = fs.readFileSync(path.join(process.cwd(), "index.html"), "utf8");
 
 			// Replace placeholders
 			template = template.replace("%statuses%", generateStatusHTML());
