@@ -7,7 +7,7 @@ module.exports = [
 	{
 		id: "services-gardens",
 		name: "Gardens Wiki",
-		url: "https://gardens",
+		url: "https://gardens.wiki",
 	},
 	{
 		id: "sl-cherish",
