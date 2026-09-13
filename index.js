@@ -188,18 +188,23 @@ const checkSiteStatus = async (site) => {
 						path: parsedUrl.pathname || "/",
 						port: parsedUrl.port || (parsedUrl.protocol === "https:" ? 443 : 80),
 						method: "GET",
+						headers: {
+							Accept: "text/html,application/xhtml+xml",
+							"User-Agent": "SolyncStatus/1.0 (+https://status.solync.org)",
+						},
 						timeout: parseInt(process.env.REQUEST_TIMEOUT || "5000"),
 					},
 					(res) => {
 						const endTime = Date.now();
 						const responseTime = endTime - startTime;
+						const online = (res.statusCode >= 200 && res.statusCode < 400) || res.statusCode === 403;
 
-						if (res.statusCode >= 200 && res.statusCode < 400) {
+						if (online) {
 							resolveAttempt({
 								id: site.id,
 								status: res.statusCode,
 								responseTime: responseTime,
-								online: true,
+								online,
 								checked: new Date(),
 							});
 						} else {
@@ -242,7 +247,7 @@ const checkSiteStatus = async (site) => {
 			});
 
 			// If status is 200 or we've hit max attempts, stop retrying
-			if (result.status === 200 || attempts >= maxAttempts) {
+			if (result.online || attempts >= maxAttempts) {
 				break;
 			}
 
@@ -350,7 +355,7 @@ const generateStatusHTML = () => {
         <summary class="status-header">
           <p class="site-name"><span>${site.name}</span><span class="status-value url-value">(${site.url})</span></p>
           <span class="status-indicator ${result.online ? "online" : "offline"}">
-            ${result.online ? "ONLINE" : "OFFLINE"}
+			${result.online ? "ONLINE" : "ERROR"}
           </span>
         </summary>
         <div class="status-content">

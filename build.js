@@ -21,16 +21,21 @@ const checkSite = async (site) => {
 
 	try {
 		const response = await fetch(site.url, {
+			headers: {
+				Accept: "text/html,application/xhtml+xml",
+				"User-Agent": "SolyncStatus/1.0 (+https://status.solync.org)",
+			},
 			signal: AbortSignal.timeout(timeout),
 			redirect: "follow",
 		});
+		const online = response.ok || response.status === 403;
 
 		return {
 			site,
 			checked,
 			status: response.status,
-			online: response.ok,
-			error: response.ok ? null : "Bad response code",
+			online,
+			error: online ? null : "Bad response code",
 		};
 	} catch (error) {
 		return {
@@ -53,14 +58,14 @@ const renderStatusHTML = (results) => {
 			const safeName = escapeHTML(site.name);
 			const safeURL = escapeHTML(site.url);
 			const safeError = escapeHTML(error);
-			const statusText = status === null ? "VERY NOT OK" : `${status} ${error ? "NOT OK" : "OK"}`;
+			const statusText = status === null ? "VERY NOT OK" : `${status} ${online ? "OK" : "NOT OK"}`;
 
 			return `
     <div class="status-card${online ? "" : " offline-card"}">
       <details open>
         <summary class="status-header">
           <p class="site-name"><span>${safeName}</span><span class="status-value url-value">(${safeURL})</span></p>
-          <span class="status-indicator ${online ? "online" : "offline"}">${online ? "ONLINE" : "OFFLINE"}</span>
+			  <span class="status-indicator ${online ? "online" : "offline"}">${online ? "ONLINE" : "ERROR"}</span>
         </summary>
         <div class="status-content">
           <div class="status-info">
@@ -93,10 +98,11 @@ const build = async () => {
 	fs.writeFileSync(outputPath, template, "utf8");
 
 	for (const { site, online, status } of results) {
-		console.log(`${online ? "ONLINE" : "OFFLINE"} ${site.name} (${status ?? "no response"})`);
+		console.log(`${online ? "ONLINE" : "ERROR"} ${site.name} (${status ?? "no response"})`);
 	}
 	console.log(`Wrote ${path.basename(outputPath)}`);
 };
+w;
 
 build().catch((error) => {
 	console.error("Failed to build SolyncStatus:", error);
