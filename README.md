@@ -19,7 +19,7 @@ Solync Status Page
 
 ### GitHub Pages
 
-Run `bun run build` to check the production sites and generate the static root `index.html`. The included GitHub Actions workflow runs this build and deploys the result to GitHub Pages whenever `main` is updated.
+Run `bun run build` to check the production sites and generate the static root `index.html`. The included GitHub Actions workflow runs this build and deploys the result to GitHub Pages whenever `main` is updated and every five minutes thereafter.
 
 ### Configuration for Development
 
