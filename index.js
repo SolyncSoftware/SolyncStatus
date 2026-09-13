@@ -425,7 +425,14 @@ const server = http.createServer((req, res) => {
 	const parsedUrl = url.parse(req.url, true);
 	const pathname = parsedUrl.pathname;
 
-	const mime = { ".png": "image/png", ".ico": "image/x-icon", ".html": "text/html", ".txt": "text/plain" };
+	const mime = {
+		".png": "image/png",
+		".ico": "image/x-icon",
+		".svg": "image/svg+xml",
+		".woff2": "font/woff2",
+		".html": "text/html",
+		".txt": "text/plain",
+	};
 
 	// Serve favicon & logo
 	if (pathname === "/favicon.ico" || pathname == "/logo.png") {
@@ -434,6 +441,21 @@ const server = http.createServer((req, res) => {
 			const img = fs.readFileSync(file);
 			res.writeHead(200, { "Content-Type": mime[path.extname(file)] });
 			res.end(img);
+			return;
+		} catch (err) {
+			res.writeHead(404);
+			res.end();
+			return;
+		}
+	}
+
+	// Serve local fonts
+	if (pathname === "/fonts/CabinetGrotesk/CabinetGrotesk-Variable.woff2") {
+		try {
+			const file = path.join(process.cwd(), pathname);
+			const font = fs.readFileSync(file);
+			res.writeHead(200, { "Content-Type": mime[".woff2"] });
+			res.end(font);
 			return;
 		} catch (err) {
 			res.writeHead(404);
@@ -453,7 +475,7 @@ const server = http.createServer((req, res) => {
 			// Replace placeholders
 			template = template.replace("%statuses%", generateStatusHTML());
 			template = template.replace(/%lastCheck%/g, lastCheckTime.toLocaleString());
-			template = template.replace(/%title%/g, "Status | Solync");
+			template = template.replace(/%title%/g, "Solync Status");
 
 			res.writeHead(200, { "Content-Type": mime[".html"] });
 			res.end(template);
