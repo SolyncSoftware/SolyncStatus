@@ -13,8 +13,9 @@ Solync Status Page
 
 1. Clone repo
 2. Run `bun i`
-3. Go to <http://localhost:3000>
-4. Make your changes, etc.
+3. Run `bun run start`
+4. Go to <http://localhost:3000>
+5. Make your changes, etc.
 
 ### Configuration for Development
 

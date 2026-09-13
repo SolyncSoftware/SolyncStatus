@@ -138,3 +138,4 @@ dist
 # Other files
 data/history.json
 data/check.development.js
+.svelte-kit
