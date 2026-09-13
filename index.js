@@ -435,11 +435,11 @@ const server = http.createServer((req, res) => {
 	};
 
 	// Serve favicon & logo
-	if (pathname === "/favicon.ico" || pathname == "/logo.png") {
+	if (pathname === "/favicon.svg" || pathname == "/logo.png") {
 		try {
 			const file = path.join(process.cwd(), pathname);
 			const img = fs.readFileSync(file);
-			res.writeHead(200, { "Content-Type": mime[path.extname(file)] });
+			res.writeHead(200, { "Content-Type": mime[path.extname(file)] || "image/svg+xml" });
 			res.end(img);
 			return;
 		} catch (err) {

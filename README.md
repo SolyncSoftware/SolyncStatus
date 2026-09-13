@@ -17,6 +17,10 @@ Solync Status Page
 4. Go to <http://localhost:3000>
 5. Make your changes, etc.
 
+### GitHub Pages
+
+Run `bun run build` to check the production sites and generate the static root `index.html`. The included GitHub Actions workflow runs this build and deploys the result to GitHub Pages whenever `main` is updated.
+
 ### Configuration for Development
 
 For development, you can set up a simple testing grounds, like so:
