@@ -33,11 +33,7 @@
     const healthPercent = $derived(totalServices === 0 ? 100 : Math.round((onlineServices / totalServices) * 100));
     const healthLabel = $derived(impactedServices === 0 ? 'Online' : impactedServices === totalServices ? 'Offline' : 'Partial outage');
     const healthTone = $derived(
-        impactedServices === 0
-            ? 'bg-success text-paper'
-            : impactedServices === totalServices
-              ? 'bg-error text-paper'
-              : 'bg-warning text-ink'
+        impactedServices === 0 ? 'bg-success text-paper' : impactedServices === totalServices ? 'bg-error text-paper' : 'bg-warning text-ink'
     );
 
     async function probe(service: Service): Promise<LiveResult> {
@@ -129,9 +125,9 @@
 
 <header class="bg-paper/90 mb-8 overflow-hidden rounded-[32px] p-5 shadow-[0_18px_60px_rgba(34,34,34,0.06)] backdrop-blur-sm sm:p-6">
     <div class="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
-        <div class="flex items-center gap-3">
+        <a class="flex items-center gap-3" href="https://solync.org/">
             <img src="/logo.png" alt="Solync logo" class="h-16 w-auto max-w-55 object-contain sm:h-20" />
-        </div>
+        </a>
 
         <div class="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
             <p class="text-ink/75 text-base">
