@@ -145,7 +145,7 @@
     <div class="bg-paper rounded-[28px] p-5 shadow-[0_10px_30px_rgba(34,34,34,0.04)]">
         <p class="text-ink/55 text-sm font-bold">Services</p>
         <div class="mt-3 flex items-end justify-between gap-4">
-            <span class="text-ink text-4xl font-black">{totalServices}</span>
+            <span class="text-ink text-4xl font-extrabold">{totalServices}</span>
             <span class="bg-offwhite text-ink/70 rounded-full px-2.5 py-1 text-sm font-bold">Tracked</span>
         </div>
     </div>
@@ -153,7 +153,7 @@
     <div class="bg-paper rounded-[28px] p-5 shadow-[0_10px_30px_rgba(34,34,34,0.04)]">
         <p class="text-ink/55 text-sm font-bold">Healthy</p>
         <div class="mt-3 flex items-end justify-between gap-4">
-            <span class="text-ink text-4xl font-black">{onlineServices}</span>
+            <span class="text-ink text-4xl font-extrabold">{onlineServices}</span>
             <span class="bg-success/10 text-success rounded-full px-2.5 py-1 text-sm font-bold">{healthPercent}%</span>
         </div>
     </div>
@@ -161,7 +161,7 @@
     <div class="bg-paper rounded-[28px] p-5 shadow-[0_10px_30px_rgba(34,34,34,0.04)]">
         <p class="text-ink/55 text-sm font-bold">Incidents</p>
         <div class="mt-3 flex items-end justify-between gap-4">
-            <span class="text-ink text-4xl font-black">{impactedServices}</span>
+            <span class="text-ink text-4xl font-extrabold">{impactedServices}</span>
             <span class={`rounded-full px-2.5 py-1 text-sm font-bold ${healthTone}`}>
                 {healthLabel}
             </span>
