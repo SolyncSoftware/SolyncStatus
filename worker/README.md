@@ -9,28 +9,28 @@ This is the data source for the Astro client component. Point the site at it wit
 
 ## Endpoints
 
-| Method | Path | Description |
-| ------ | ---- | ----------- |
-| `GET` | `/` or `/status` | Current snapshot as JSON |
-| `OPTIONS` | any | CORS preflight |
+| Method    | Path             | Description              |
+| --------- | ---------------- | ------------------------ |
+| `GET`     | `/` or `/status` | Current snapshot as JSON |
+| `OPTIONS` | any              | CORS preflight           |
 
 Response shape (matches `StatusBoard.astro`):
 
 ```json
 {
-  "updatedAt": "2026-01-01T00:00:00.000Z",
-  "refreshMinutes": 5,
-  "cached": true,
-  "services": [
-    {
-      "id": "solynclanding",
-      "online": true,
-      "status": 200,
-      "error": null,
-      "responseTime": 123,
-      "checked": "2026-01-01T00:00:00.000Z"
-    }
-  ]
+    "updatedAt": "2026-01-01T00:00:00.000Z",
+    "refreshMinutes": 5,
+    "cached": true,
+    "services": [
+        {
+            "id": "solynclanding",
+            "online": true,
+            "status": 200,
+            "error": null,
+            "responseTime": 123,
+            "checked": "2026-01-01T00:00:00.000Z"
+        }
+    ]
 }
 ```
 
@@ -52,11 +52,11 @@ or browser cache can absorb repeat traffic without hitting the worker.
 
 Set in `wrangler.toml` under `[vars]` (per environment) or via the dashboard:
 
-| Variable | Default | Purpose |
-| -------- | ------- | ------- |
-| `REFRESH_MINUTES` | `5` | Minutes before the snapshot is considered stale |
-| `REQUEST_TIMEOUT_MS` | `5000` | Per-service probe timeout |
-| `ALLOWED_ORIGIN` | `https://status.solync.org` | Comma-separated CORS origins, or `*` |
+| Variable             | Default                     | Purpose                                         |
+| -------------------- | --------------------------- | ----------------------------------------------- |
+| `REFRESH_MINUTES`    | `5`                         | Minutes before the snapshot is considered stale |
+| `REQUEST_TIMEOUT_MS` | `5000`                      | Per-service probe timeout                       |
+| `ALLOWED_ORIGIN`     | `https://status.solync.org` | Comma-separated CORS origins, or `*`            |
 
 Services are imported from `../src/content/services/*.json`, the same files that back the
 Astro content collection, so URLs are not duplicated.

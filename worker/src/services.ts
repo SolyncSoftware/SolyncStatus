@@ -4,9 +4,9 @@ import gardens from '../../src/content/services/services-gardens.json';
 import infrastructure from '../../src/content/services/sl-cherish.json';
 
 export interface Service {
-	id: string;
-	name: string;
-	url: string;
+    id: string;
+    name: string;
+    url: string;
 }
 
 /**
@@ -18,8 +18,8 @@ export interface Service {
  * repository, inline this list instead.
  */
 export const services: Service[] = [
-	{ id: 'solynclanding', ...landing },
-	{ id: 'landingalpha', ...landingAlpha },
-	{ id: 'services-gardens', ...gardens },
-	{ id: 'sl-cherish', ...infrastructure },
+    { id: 'solynclanding', ...landing },
+    { id: 'landingalpha', ...landingAlpha },
+    { id: 'services-gardens', ...gardens },
+    { id: 'sl-cherish', ...infrastructure }
 ];

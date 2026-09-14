@@ -9,13 +9,12 @@ const statuses = await checkAllServices(services);
 const initialViews = statuses.map(toStatusView);
 const lastCheck = new Date();
 
-const refreshMinutes =
-    Number(import.meta.env.PUBLIC_STATUS_REFRESH_MINUTES) || 5;
+const refreshMinutes = Number(import.meta.env.PUBLIC_STATUS_REFRESH_MINUTES) || 5;
 const apiUrl = import.meta.env.PUBLIC_STATUS_API_URL ?? "";
 ---
 
 <Layout title="Solync Status">
-    <div class="mx-auto my-8 w-4/5 px-4 pb-20 max-sm:w-[95%] max-sm:px-2">
+    <main class="mx-auto w-full max-w-6xl px-4 py-8 pb-20 sm:px-6 lg:px-8">
         <StatusBoard
             initialViews={initialViews}
             services={services}
@@ -28,5 +27,5 @@ const apiUrl = import.meta.env.PUBLIC_STATUS_API_URL ?? "";
         <footer class="mt-12 border-t border-accent pt-4 text-center text-[0.9rem]">
             &copy; {lastCheck.getFullYear()} Solync. All rights reserved.
         </footer>
-    </div>
+    </main>
 </Layout>
