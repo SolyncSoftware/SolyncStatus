@@ -4,9 +4,10 @@
 
     interface Props {
         view: StatusView;
+        history: Array<boolean | null>;
     }
 
-    let { view }: Props = $props();
+    let { view, history }: Props = $props();
 
     const badgeClass = $derived(view.online ? 'border-success/25 bg-success/10 text-success' : 'border-error/25 bg-error/10 text-error');
     const dotClass = $derived(view.online ? 'bg-success' : 'bg-error');
@@ -46,6 +47,19 @@
         <div class="bg-offwhite rounded-2xl px-3 py-2.5">
             <p class="text-ink/55 text-sm font-bold">checked</p>
             <p class="text-ink mt-1 font-bold">{checkedText}</p>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <div class="mb-2 flex items-center justify-between gap-3">
+            <p class="text-ink/55 text-sm font-bold">downtime (red means error)</p>
+            <p class="text-ink/55 text-sm">last 30 checks</p>
+        </div>
+        <div class="flex h-2 gap-1" aria-label="Downtime history for the last 30 checks">
+            {#each history as result}
+                <span class={`min-w-0 flex-1 rounded-full ${result === null ? 'bg-ink/15' : result ? 'bg-success' : 'bg-error'}`} aria-hidden="true"
+                ></span>
+            {/each}
         </div>
     </div>
 

@@ -21,7 +21,15 @@
     const timeoutMs = 5000;
     const debounceMs = 1000;
 
+    interface ApiResponse {
+        services?: LiveResult[];
+        history?: Record<string, Array<boolean | null>>;
+    }
+
     let views = $state<StatusView[]>(initialViews);
+    let history = $state<Record<string, Array<boolean | null>>>(
+        Object.fromEntries(initialViews.map((view) => [view.id, [...Array(29).fill(null), view.online]]))
+    );
     let lastCheckedAt = $state(lastChecked);
     let inFlight = false;
     let lastFetchedAt = 0;
@@ -64,20 +72,24 @@
         }
     }
 
-    async function fetchApi(): Promise<LiveResult[]> {
+    async function fetchApi(): Promise<{ results: LiveResult[]; history?: Record<string, Array<boolean | null>> }> {
         const response = await fetch(apiUrl, {
             cache: 'no-store',
             signal: AbortSignal.timeout(timeoutMs)
         });
         if (!response.ok) throw new Error(`Status API returned ${response.status}`);
-        const data = (await response.json()) as LiveResult[] | { services?: LiveResult[] };
-        return Array.isArray(data) ? data : (data.services ?? []);
+        const data = (await response.json()) as LiveResult[] | ApiResponse;
+        return Array.isArray(data) ? { results: data } : { results: data.services ?? [], history: data.history };
     }
 
-    function applyResults(results: LiveResult[]): void {
+    function applyResults(results: LiveResult[], persistedHistory?: Record<string, Array<boolean | null>>): void {
+        if (persistedHistory) history = persistedHistory;
         const byId = new Map(results.map((result) => [result.id, result]));
         views = views.map((view) => {
             const result = byId.get(view.id);
+            if (result && !persistedHistory) {
+                history[result.id] = [...(history[result.id] ?? Array(30).fill(null)).slice(-29), result.online];
+            }
             return result ? applyLiveResult(view, result) : view;
         });
         lastCheckedAt = new Date().toISOString();
@@ -97,8 +109,8 @@
 
         inFlight = true;
         try {
-            const results = apiUrl ? await fetchApi() : await Promise.all(services.map(probe));
-            applyResults(results);
+            const response = apiUrl ? await fetchApi() : { results: await Promise.all(services.map(probe)) };
+            applyResults(response.results, response.history);
             lastFetchedAt = Date.now();
         } catch (error) {
             console.error('[SolyncStatus] refresh failed', error);
@@ -174,7 +186,7 @@
     {:else}
         <div class="grid gap-5 xl:grid-cols-2">
             {#each views as view (view.id)}
-                <StatusCard {view} />
+                <StatusCard {view} history={history[view.id] ?? []} />
             {/each}
         </div>
     {/if}

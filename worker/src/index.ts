@@ -23,6 +23,7 @@ interface ProbeResult {
 interface Snapshot {
     updatedAt: string;
     services: ProbeResult[];
+    history: Record<string, boolean[]>;
 }
 
 const SNAPSHOT_KEY = 'snapshot:v1';
@@ -116,11 +117,15 @@ async function readSnapshot(env: Env): Promise<Snapshot | null> {
  * because KV is eventually consistent.
  */
 async function refresh(env: Env, timeoutMs: number): Promise<Snapshot> {
+    const previous = await readSnapshot(env);
     await env.STATUS_KV.put(LOCK_KEY, String(Date.now()), { expirationTtl: 60 });
 
     try {
         const results = await Promise.all(services.map((service) => probe(service, timeoutMs)));
-        const snapshot: Snapshot = { updatedAt: new Date().toISOString(), services: results };
+        const history = Object.fromEntries(
+            results.map((result) => [result.id, [...(previous?.history?.[result.id] ?? []).slice(-29), result.online]])
+        );
+        const snapshot: Snapshot = { updatedAt: new Date().toISOString(), services: results, history };
         await env.STATUS_KV.put(SNAPSHOT_KEY, JSON.stringify(snapshot));
         return snapshot;
     } finally {
@@ -144,7 +149,17 @@ async function getSnapshot(env: Env, timeoutMs: number, refreshMs: number): Prom
     return { snapshot: await refresh(env, timeoutMs), cached: false };
 }
 
+async function scheduledRefresh(env: Env): Promise<void> {
+    const refreshMinutes = readMinutes(env.REFRESH_MINUTES, DEFAULT_REFRESH_MINUTES);
+    const timeoutMs = readMinutes(env.REQUEST_TIMEOUT_MS, DEFAULT_TIMEOUT_MS);
+    await getSnapshot(env, timeoutMs, refreshMinutes * 60_000);
+}
+
 export default {
+    async scheduled(_controller: ScheduledController, env: Env): Promise<void> {
+        await scheduledRefresh(env);
+    },
+
     async fetch(request: Request, env: Env): Promise<Response> {
         const url = new URL(request.url);
         const refreshMinutes = readMinutes(env.REFRESH_MINUTES, DEFAULT_REFRESH_MINUTES);
@@ -183,7 +198,8 @@ export default {
             updatedAt: result.snapshot.updatedAt,
             refreshMinutes,
             cached: result.cached,
-            services: result.snapshot.services
+            services: result.snapshot.services,
+            history: result.snapshot.history
         });
 
         return new Response(body, { status: 200, headers: responseHeaders(env, request, refreshMs / 1000) });

@@ -32,6 +32,8 @@ export interface StatusView {
     responseTime: number;
     /** ISO timestamp. */
     checked: string;
+    /** Recent check results, oldest first. */
+    history?: Array<boolean | null>;
 }
 
 /** Result shape returned by the status API / client probe. */
