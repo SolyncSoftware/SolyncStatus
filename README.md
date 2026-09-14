@@ -7,4 +7,4 @@ Solync Status Page
 Read [DEVELOPING.md](DEVELOPING.md)
 
 ## Legal
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE).
