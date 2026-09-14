@@ -3,7 +3,7 @@
 Solync Status Page
 
 ## Getting started
-
+todo: add more
 Read [DEVELOPING.md](DEVELOPING.md)
 
 ## Legal
