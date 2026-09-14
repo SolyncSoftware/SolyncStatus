@@ -29,7 +29,7 @@
                         {view.online ? 'Online' : 'Error'}
                     </span>
                 </div>
-                <p class="text-ink/65 mt-1 truncate text-sm">{view.url}</p>
+                <a class="text-ink/65 mt-1 truncate text-sm hover:underline" href={view.url} target="_blank">{view.url}</a>
             </div>
         </div>
     </div>
