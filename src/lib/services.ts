@@ -9,13 +9,13 @@ import type { Service } from './status';
  * supplies live uptime.
  */
 export async function getServices(): Promise<Service[]> {
-	const entries = await getCollection('services');
+    const entries = await getCollection('services');
 
-	return entries.map((entry) => ({
-		id: entry.id,
-		name: entry.data.name,
-		url: entry.data.url,
-		group: entry.data.group,
-		description: entry.data.description,
-	}));
+    return entries.map((entry) => ({
+        id: entry.id,
+        name: entry.data.name,
+        url: entry.data.url,
+        group: entry.data.group,
+        description: entry.data.description
+    }));
 }

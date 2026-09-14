@@ -8,13 +8,13 @@ import { glob } from 'astro/loaders';
  * inherently dynamic and can't live in committed content.
  */
 const services = defineCollection({
-	loader: glob({ base: './src/content/services', pattern: '**/*.json' }),
-	schema: z.object({
-		name: z.string(),
-		url: z.url(),
-		group: z.string().optional(),
-		description: z.string().optional(),
-	}),
+    loader: glob({ base: './src/content/services', pattern: '**/*.json' }),
+    schema: z.object({
+        name: z.string(),
+        url: z.url(),
+        group: z.string().optional(),
+        description: z.string().optional()
+    })
 });
 
 export const collections = { services };

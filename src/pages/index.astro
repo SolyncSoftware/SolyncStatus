@@ -1,21 +1,21 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import StatusBoard from "../components/StatusBoard.svelte";
-import { getServices } from "../lib/services";
-import { checkAllServices, toStatusView } from "../lib/status";
+import Layout from '../layouts/Layout.astro';
+import StatusBoard from '../components/StatusBoard.svelte';
+import { getServices } from '../lib/services';
+import { checkAllServices, toStatusView } from '../lib/status';
+import { SiGithub, SiDiscord, SiGmail } from '@icons-pack/svelte-simple-icons';
 
 const services = await getServices();
 const statuses = await checkAllServices(services);
 const initialViews = statuses.map(toStatusView);
 const lastCheck = new Date();
 
-const refreshMinutes =
-    Number(import.meta.env.PUBLIC_STATUS_REFRESH_MINUTES) || 5;
-const apiUrl = import.meta.env.PUBLIC_STATUS_API_URL ?? "";
+const refreshMinutes = Number(import.meta.env.PUBLIC_STATUS_REFRESH_MINUTES) || 5;
+const apiUrl = import.meta.env.PUBLIC_STATUS_API_URL ?? '';
 ---
 
-<Layout title="Solync Status">
-    <div class="mx-auto my-8 w-4/5 px-4 pb-20 max-sm:w-[95%] max-sm:px-2">
+<Layout title='Solync Status'>
+    <main class='mx-auto w-full max-w-6xl px-4 py-8 pb-20 sm:px-6 lg:px-8'>
         <StatusBoard
             initialViews={initialViews}
             services={services}
@@ -25,8 +25,58 @@ const apiUrl = import.meta.env.PUBLIC_STATUS_API_URL ?? "";
             client:load
         />
 
-        <footer class="mt-12 border-t border-accent pt-4 text-center text-[0.9rem]">
-            &copy; {lastCheck.getFullYear()} Solync. All rights reserved.
+        <footer class='mt-12 border-t border-accent pt-4 text-center'>
+            <div class='flex flex-col items-center gap-4 text-center'>
+                <div class='flex items-center justify-center gap-4 text-ink'>
+                    <a
+                        href='https://github.com/SolyncSoftware'
+                        aria-label='GitHub'
+                        class='flex items-center justify-center rounded-full bg-paper p-3.5 transition-opacity hover:opacity-80'
+                    >
+                        <SiGithub size={18} title='' />
+                    </a>
+                    <a
+                        href='https://discord.gg/nUeRyRtDYC'
+                        aria-label='Discord'
+                        class='flex items-center justify-center rounded-full p-3.5 bg-paper transition-opacity hover:opacity-80'
+                    >
+                        <SiDiscord size={18} title='' />
+                    </a>
+                    <a
+                        href='mailto:solyncsoftware@gmail.com'
+                        aria-label='Contact'
+                        class='flex items-center justify-center rounded-full bg-paper p-3.5 transition-opacity hover:opacity-80'
+                    >
+                        <SiGmail size={18} title='' />
+                    </a>
+                </div>
+                <div class='text-center text-lg'>
+                    &copy; {lastCheck.getFullYear()} Solync. Made with
+                    <span class='heart text-error inline-block mx-1' aria-hidden='true'>
+                        &#10084;
+                    </span>
+                    in Texas.
+                </div>
+            </div>
         </footer>
-    </div>
+    </main>
 </Layout>
+
+<style scoped>
+    .heart {
+        animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+        0%,
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        50% {
+            opacity: 0.727;
+            transform: scale(1.2);
+        }
+    }
+</style>

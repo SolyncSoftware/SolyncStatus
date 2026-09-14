@@ -1,3 +1,11 @@
 {
-	"deepscan.ignoreConfirmWarning": true
+    "[astro]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "[svelte]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "deepscan.ignoreConfirmWarning": true
 }
