@@ -1,59 +1,43 @@
-# SolyncStatus
+# Astro Starter Kit: Minimal
 
-Solync Status Page
-
-## Getting started
-
-### Requirements
-
-- [NodeJS](https://nodejs.org)
-- [NPM](https://npmjs.com)
-
-### Development
-
-1. Clone repo
-2. Run `bun i`
-3. Run `bun run start`
-4. Go to <http://localhost:3000>
-5. Make your changes, etc.
-
-### GitHub Pages
-
-Run `bun run build` to check the production sites and generate the static root `index.html`. The included GitHub Actions workflow runs this build and deploys the result to GitHub Pages whenever `main` is updated and every five minutes thereafter.
-
-### Configuration for Development
-
-For development, you can set up a simple testing grounds, like so:
-
-`data/check.development.js`:
-
-```js
-module.exports = [
- {
-  id: "test",
-  name: "Test Site",
-  url: "https://test.example.com",
- },
-];
+```sh
+pnpm create astro@latest -- --template minimal
 ```
 
-`.env`
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-```env
-# App Settings
-PORT=3000
-CHECK_INTERVAL="5000"
-REQUEST_TIMEOUT="5000"
+## 🚀 Project Structure
 
-# Webhook(s) to send the Status updates to when something is down or up etc.
-DISCORDWEBHOOK_MEMBERS_MESSAGE="whateveryouwantHERE"
-DISCORDWEBHOOK_MEMBERS_URL="webhookURLhere"
-DISCORDWEBHOOK_MAIN_URL=""
-DISCORDWEBHOOK_MAIN_MESSAGE=""
+Inside of your Astro project, you'll see the following folders and files:
+
+```text
+/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.astro
+└── package.json
 ```
 
-Notes:
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-- These won't be published to GitHub.
-- It is recommended to leave the `DISCORDWEBHOOK_MAIN_*` alone when testing.
-- Check Interval is 5000ms (5s) so offline/online updates faster.
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+
+Any static assets, like images, can be placed in the `public/` directory.
+
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `pnpm install`             | Installs dependencies                            |
+| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
+| `pnpm build`           | Build your production site to `./dist/`          |
+| `pnpm preview`         | Preview your build locally, before deploying     |
+| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

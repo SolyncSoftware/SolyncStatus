@@ -1,0 +1,19 @@
+name = "solync-status-api"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+
+# How long a KV snapshot stays fresh before services are re-probed, and the
+# per-request probe timeout. Both are overridable per environment below.
+[vars]
+REFRESH_MINUTES = "5"
+REQUEST_TIMEOUT_MS = "5000"
+ALLOWED_ORIGIN = "https://status.solync.org"
+
+# Create with: wrangler kv namespace create STATUS_KV
+# then paste the returned id here.
+[[kv_namespaces]]
+binding = "STATUS_KV"
+id = "66219a2d91c74f16975ad7a89f8dc951"
+
+[observability]
+enabled = true

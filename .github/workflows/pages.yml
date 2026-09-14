@@ -21,16 +21,18 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
-            - uses: oven-sh/setup-bun@v2
-            - run: bun install --frozen-lockfile
-            - run: bun run build
-            - run: |
-                  mkdir _site
-                  cp index.html logo.png favicon.svg CNAME _site/
-                  cp -r fonts _site/
+            - uses: pnpm/action-setup@v4
+              with:
+                  version: 11
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+                  cache: pnpm
+            - run: pnpm install --frozen-lockfile
+            - run: pnpm build
             - uses: actions/upload-pages-artifact@v3
               with:
-                  path: _site
+                  path: dist
 
     deploy:
         needs: build
