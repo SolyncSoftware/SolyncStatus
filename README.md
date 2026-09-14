@@ -7,7 +7,7 @@ Solync Status Page
 ### Requirements
 
 - [NodeJS](https://nodejs.org)
-- [NPM](https://npmjs.com)
+- [Bun](https://bun.com/)
 
 ### Development
 
