@@ -102,7 +102,6 @@ const build = async () => {
 	}
 	console.log(`Wrote ${path.basename(outputPath)}`);
 };
-w;
 
 build().catch((error) => {
 	console.error("Failed to build SolyncStatus:", error);
