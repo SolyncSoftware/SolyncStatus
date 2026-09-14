@@ -50,7 +50,7 @@
         </div>
     </div>
 
-    <div class="mt-4">
+    <!-- <div class="mt-4">
         <div class="mb-2 flex items-center justify-between gap-3">
             <p class="text-ink/55 text-sm font-bold">downtime (red means error)</p>
             <p class="text-ink/55 text-sm">last 30 checks</p>
@@ -61,7 +61,7 @@
                 ></span>
             {/each}
         </div>
-    </div>
+    </div> -->
 
     {#if showError}
         <div class="border-error/20 bg-error/5 text-error mt-4 rounded-2xl border px-3 py-3 text-[0.85rem]">
