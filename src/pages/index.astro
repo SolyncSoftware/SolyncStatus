@@ -1,0 +1,32 @@
+---
+import Layout from "../layouts/Layout.astro";
+import StatusBoard from "../components/StatusBoard.svelte";
+import { getServices } from "../lib/services";
+import { checkAllServices, toStatusView } from "../lib/status";
+
+const services = await getServices();
+const statuses = await checkAllServices(services);
+const initialViews = statuses.map(toStatusView);
+const lastCheck = new Date();
+
+const refreshMinutes =
+    Number(import.meta.env.PUBLIC_STATUS_REFRESH_MINUTES) || 5;
+const apiUrl = import.meta.env.PUBLIC_STATUS_API_URL ?? "";
+---
+
+<Layout title="Solync Status">
+    <div class="mx-auto my-8 w-4/5 px-4 pb-20 max-sm:w-[95%] max-sm:px-2">
+        <StatusBoard
+            initialViews={initialViews}
+            services={services}
+            lastChecked={lastCheck.toISOString()}
+            refreshMinutes={refreshMinutes}
+            apiUrl={apiUrl}
+            client:load
+        />
+
+        <footer class="mt-12 border-t border-accent pt-4 text-center text-[0.9rem]">
+            &copy; {lastCheck.getFullYear()} Solync. All rights reserved.
+        </footer>
+    </div>
+</Layout>
