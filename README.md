@@ -1,4 +1,4 @@
-# SolyncStatus
+# SolyncStatus (SS)
 
 Solync Status Page
 
