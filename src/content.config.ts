@@ -13,7 +13,8 @@ const services = defineCollection({
         name: z.string(),
         url: z.url(),
         group: z.string().optional(),
-        description: z.string().optional()
+        description: z.string().optional(),
+        iconUrl: z.string().optional(),
     })
 });
 

@@ -21,17 +21,22 @@
     class="border-accent/15 bg-paper animate-fade-in w-full overflow-hidden rounded-[28px] border p-5 shadow-[0_12px_35px_rgba(34,34,34,0.05)] transition-all duration-300"
 >
     <div class="flex items-start justify-between gap-4">
-        <div class="flex min-w-0 items-center gap-3">
-            <div class="min-w-0">
-                <div class="flex flex-wrap items-center gap-2 align-middle">
-                    <span class={`inline-block h-3 w-3 shrink-0 rounded-full ${dotClass}`}></span>
-                    <h2 class="text-ink truncate text-xl font-bold">{view.name}</h2>
-                    <span class={`rounded-full border px-2 py-0.5 text-sm font-bold ${badgeClass}`}>
-                        {view.online ? 'Online' : 'Error'}
-                    </span>
+        <div class="flex w-full min-w-0 items-center gap-3">
+            <div class="w-full min-w-0">
+                <div class="flex justify-between">
+                    <div class="flex flex-wrap items-center gap-2 align-middle">
+                        <span class={`inline-block h-3 w-3 shrink-0 rounded-full ${dotClass}`}></span>
+                        <h2 class="text-ink truncate text-xl font-bold">{view.name}</h2>
+                        <span class={`rounded-full border px-2 py-0.5 text-sm font-bold ${badgeClass}`}>
+                            {view.online ? 'Online' : 'Error'}
+                        </span>
+                    </div>
                 </div>
                 <a class="text-ink/65 mt-1 truncate text-sm hover:underline" href={view.url} target="_blank">{view.url}</a>
             </div>
+            {#if view.iconUrl}
+                <img width="48" height="48" class="max-h-12 max-w-12" src={view.iconUrl} alt="{view.name} logo." />
+            {/if}
         </div>
     </div>
 

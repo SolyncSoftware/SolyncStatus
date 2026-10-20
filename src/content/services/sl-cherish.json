@@ -1,4 +1,5 @@
 {
     "name": "Infrastructure",
-    "url": "https://pve.solync.org"
+    "url": "https://pve.solync.org",
+    "iconUrl": "logo_proxmox.svg"
 }
