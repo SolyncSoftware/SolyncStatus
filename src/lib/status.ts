@@ -9,6 +9,8 @@ export interface Service {
     group?: string;
     /** Optional longer description shown to users. */
     description?: string;
+    /** Optional logo icon displayed next to the service name. */
+    iconUrl?: string;
 }
 
 export interface ServiceStatus {
@@ -34,6 +36,7 @@ export interface StatusView {
     checked: string;
     /** Recent check results, oldest first. */
     history?: Array<boolean | null>;
+    iconUrl?: string;
 }
 
 /** Result shape returned by the status API / client probe. */
@@ -55,7 +58,8 @@ export function toStatusView(status: ServiceStatus): StatusView {
         status: status.status,
         error: status.error,
         responseTime: status.responseTime,
-        checked: status.checked.toISOString()
+        checked: status.checked.toISOString(),
+        iconUrl: status.service.iconUrl,
     };
 }
 

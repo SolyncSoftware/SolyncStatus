@@ -1,4 +1,5 @@
 {
     "name": "Alpha Landing",
-    "url": "https://alpha.solync.org"
+    "url": "https://alpha.solync.org",
+    "iconUrl": "logo_solync_dev.svg"
 }

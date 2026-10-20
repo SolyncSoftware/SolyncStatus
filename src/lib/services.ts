@@ -16,6 +16,7 @@ export async function getServices(): Promise<Service[]> {
         name: entry.data.name,
         url: entry.data.url,
         group: entry.data.group,
-        description: entry.data.description
+        description: entry.data.description,
+        iconUrl: entry.data.iconUrl,
     }));
 }
