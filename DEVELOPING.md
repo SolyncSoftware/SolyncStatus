@@ -13,4 +13,4 @@ Look at existing services for examples.
 |----------------------|----------|--------------------------------------------------------------------------------------------------------------|
 | `name`               | `string` | Name label of service.                                                                                       |
 | `url`                | `string` | URL destination of service. Used for connectivity tests as well as a hyperlink to this service.              |
-| `iconURL` (optional) | `string` | URL destination of an image used as this service's icon. Any file format supported by `<img/>` is valid.     |
+| `iconUrl` (optional) | `string` | URL destination of an image used as this service's icon. Any file format supported by `<img/>` is valid.     |
